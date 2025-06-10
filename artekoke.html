@@ -1,0 +1,1145 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Artekoke - Plantas Comerciais Premium</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Reset e estilos base */
+        :root {
+            --verde-claro: #C1D8C3;
+            --verde-acinzentado: #6D8B74;
+            --branco: #F5F5F5;
+            --sombra: 0 4px 20px rgba(0, 0, 0, 0.08);
+            --transicao: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.1);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', system-ui, -apple-system, sans-serif;
+        }
+        
+        body {
+            background-color: var(--branco);
+            color: #333;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        /* Tipografia */
+        h1, h2, h3, h4 {
+            font-weight: 600;
+            line-height: 1.2;
+        }
+        
+        /* Header */
+        header {
+            background-color: white;
+            box-shadow: var(--sombra);
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+            transition: var(--transicao);
+        }
+        
+        header.scrolled {
+            padding: 10px 0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+            transition: var(--transicao);
+        }
+        
+        .logo {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--verde-acinzentado);
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo span {
+            color: var(--verde-claro);
+            margin-left: 4px;
+        }
+        
+        .logo i {
+            margin-right: 10px;
+            font-size: 24px;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 30px;
+            position: relative;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: var(--verde-acinzentado);
+            font-weight: 500;
+            transition: var(--transicao);
+            padding: 5px 0;
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--verde-claro);
+            transition: var(--transicao);
+        }
+        
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        
+        .hamburger {
+            display: none;
+            cursor: pointer;
+        }
+        
+        /* Hero Section */
+        .hero {
+            padding: 180px 0 120px;
+            background: linear-gradient(135deg, var(--verde-claro) 0%, rgba(193, 216, 195, 0.9) 100%);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://images.unsplash.com/photo-1526397751294-331021109fbd?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1674&q=80') center/cover no-repeat;
+            opacity: 0.1;
+            z-index: 0;
+        }
+        
+        .hero .container {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            color: var(--verde-acinzentado);
+            animation: fadeInUp 1s ease-out;
+        }
+        
+        .hero p {
+            font-size: 1.25rem;
+            max-width: 700px;
+            margin: 0 auto 40px;
+            color: #555;
+            animation: fadeInUp 1s ease-out 0.2s forwards;
+            opacity: 0;
+        }
+        
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background-color: var(--verde-acinzentado);
+            color: white;
+            padding: 14px 32px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transicao);
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(109, 139, 116, 0.3);
+            animation: fadeInUp 1s ease-out 0.4s forwards;
+            opacity: 0;
+        }
+        
+        .btn:hover {
+            background-color: #5a7761;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(109, 139, 116, 0.4);
+        }
+        
+        .btn i {
+            margin-left: 8px;
+        }
+        
+        /* Destaques */
+        .destaques {
+            padding: 100px 0;
+            text-align: center;
+            background-color: white;
+        }
+        
+        .destaques h2 {
+            font-size: 2.5rem;
+            margin-bottom: 60px;
+            color: var(--verde-acinzentado);
+            position: relative;
+            display: inline-block;
+        }
+        
+        .destaques h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 70px;
+            height: 3px;
+            background-color: var(--verde-claro);
+        }
+        
+        .plantas-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+        
+        .planta-card {
+            background-color: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: var(--sombra);
+            transition: var(--transicao);
+            position: relative;
+        }
+        
+        .planta-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.12);
+        }
+        
+        .planta-img {
+            height: 350px;
+            background-color: var(--verde-claro);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--verde-acinzentado);
+            font-weight: bold;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .planta-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transicao);
+        }
+        
+        .planta-card:hover .planta-img img {
+            transform: scale(1.05);
+        }
+        
+        .instagram-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(109, 139, 116, 0.9);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: var(--transicao);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .planta-card:hover .instagram-overlay {
+            opacity: 1;
+        }
+        
+        .instagram-overlay i {
+            font-size: 2.5rem;
+            margin-bottom: 2px;
+        }
+        
+        .instagram-overlay p {
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+        }
+        
+        .instagram-link {
+            color: white;
+            background-color: transparent;
+            border: 2px solid white;
+            padding: 8px 20px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transicao);
+            display: inline-flex;
+            align-items: center;
+        }
+        
+        .instagram-link:hover {
+            background-color: white;
+            color: var(--verde-acinzentado);
+        }
+        
+        .instagram-link i {
+            margin-right: 8px;
+        }
+        
+        .planta-info {
+            padding: 25px;
+            text-align: left;
+        }
+        
+        .planta-info h3 {
+            margin-bottom: 12px;
+            color: var(--verde-acinzentado);
+            font-size: 1.5rem;
+        }
+        
+        .planta-info p {
+            margin-bottom: 15px;
+            color: #666;
+        }
+        
+        .preco {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--verde-acinzentado);
+            margin: 20px 0;
+            display: block;
+        }
+        
+        /* Sobre */
+        .sobre {
+            padding: 100px 0;
+            background-color: var(--verde-claro);
+            position: relative;
+        }
+        
+        .sobre .container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .sobre-img {
+            height: 450px;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: var(--sombra);
+            position: relative;
+        }
+        
+        .sobre-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transicao);
+        }
+        
+        .sobre-img:hover img {
+            transform: scale(1.03);
+        }
+        
+        .sobre-content h2 {
+            font-size: 2.5rem;
+            margin-bottom: 25px;
+            color: var(--verde-acinzentado);
+            position: relative;
+            display: inline-block;
+        }
+        
+        .sobre-content h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 80px;
+            height: 3px;
+            background-color: var(--verde-acinzentado);
+        }
+        
+        .sobre-content p {
+            margin-bottom: 25px;
+            color: #555;
+            font-size: 1.1rem;
+        }
+        
+        /* Contato */
+        .contato {
+            padding: 100px 0;
+            text-align: center;
+            background-color: white;
+        }
+        
+        .contato h2 {
+            font-size: 2.5rem;
+            margin-bottom: 60px;
+            color: var(--verde-acinzentado);
+            position: relative;
+            display: inline-block;
+        }
+        
+        .contato h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background-color: var(--verde-claro);
+        }
+        
+        .form-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 50px;
+            border-radius: 12px;
+            box-shadow: var(--sombra);
+            text-align: left;
+        }
+        
+        .form-group {
+            margin-bottom: 25px;
+            position: relative;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--verde-acinzentado);
+            font-weight: 500;
+            font-size: 1.1rem;
+        }
+        
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 14px 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: var(--transicao);
+        }
+        
+        .form-group input:focus,
+        .form-group textarea:focus {
+            border-color: var(--verde-claro);
+            box-shadow: 0 0 0 3px rgba(193, 216, 195, 0.3);
+            outline: none;
+        }
+        
+        .form-group textarea {
+            height: 150px;
+            resize: vertical;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--verde-acinzentado);
+            color: white;
+            padding: 60px 0 30px;
+            text-align: center;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+            text-align: left;
+        }
+        
+        .footer-section h3 {
+            margin-bottom: 25px;
+            font-size: 1.3rem;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .footer-section h3::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 40px;
+            height: 2px;
+            background-color: var(--verde-claro);
+        }
+        
+        .footer-section p, 
+        .footer-section a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            display: block;
+            margin-bottom: 12px;
+            transition: var(--transicao);
+        }
+        
+        .footer-section a:hover {
+            color: white;
+            padding-left: 5px;
+        }
+        
+        .social-icons {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .social-icons a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: white;
+            font-size: 1.2rem;
+            transition: var(--transicao);
+        }
+        
+        .social-icons a:hover {
+            background-color: var(--verde-claro);
+            color: var(--verde-acinzentado);
+            transform: translateY(-3px);
+        }
+        
+        .copyright {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 30px;
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.7);
+        }
+        
+        /* Instagram Feed - NOVO ESTILO */
+        .instagram-feed {
+            padding: 100px 0;
+            background-color: var(--branco);
+            text-align: center;
+        }
+
+        .instagram-feed h2 {
+            font-size: 2.5rem;
+            margin-bottom: 60px;
+            color: var(--verde-acinzentado);
+            position: relative;
+            display: inline-block;
+        }
+
+        .instagram-feed h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background-color: var(--verde-claro);
+        }
+
+        .instagram-container {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .instagram-post {
+            flex: 1;
+            min-width: 300px;
+            max-width: 400px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: var(--sombra);
+            overflow: hidden;
+            transition: var(--transicao);
+        }
+
+        .instagram-post:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.12);
+        }
+
+        .instagram-embed-container {
+            min-height: 500px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #fafafa;
+            border-radius: 8px;
+        }
+
+        .instagram-post-info {
+            padding: 30px;
+            text-align: left;
+            background: white;
+            border-radius: 12px;
+            box-shadow: var(--sombra);
+            max-width: 400px;
+        }
+
+        .instagram-post-info h3 {
+            color: var(--verde-acinzentado);
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+        }
+
+        .instagram-post-info p {
+            margin-bottom: 20px;
+            color: #666;
+        }
+
+        .instagram-cta {
+            margin-top: 25px;
+        }
+
+        .instagram-cta a {
+            display: inline-flex;
+            align-items: center;
+            color: var(--verde-acinzentado);
+            font-weight: 600;
+            text-decoration: none;
+            transition: var(--transicao);
+        }
+
+        .instagram-cta a:hover {
+            color: var(--verde-claro);
+        }
+
+        .instagram-cta a i {
+            margin-left: 8px;
+        }
+
+        .instagram-fallback-message {
+            padding: 30px;
+            text-align: center;
+            color: var(--verde-acinzentado);
+        }
+
+        .instagram-fallback-message a {
+            margin-top: 15px;
+        }
+
+        /* Animações */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+        
+        .floating {
+            animation: float 4s ease-in-out infinite;
+        }
+        
+        /* Responsivo */
+        @media (max-width: 992px) {
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+            
+            .sobre .container {
+                gap: 40px;
+            }
+            
+            .sobre-img {
+                height: 380px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .hamburger {
+                display: block;
+                font-size: 1.5rem;
+                color: var(--verde-acinzentado);
+            }
+            
+            .nav-links {
+                position: fixed;
+                top: 80px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 80px);
+                background-color: white;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                transition: var(--transicao);
+                padding: 40px 0;
+            }
+            
+            .nav-links.active {
+                left: 0;
+            }
+            
+            .nav-links li {
+                margin: 15px 0;
+            }
+            
+            .hero {
+                padding: 150px 0 80px;
+            }
+            
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
+            .sobre .container {
+                grid-template-columns: 1fr;
+            }
+            
+            .sobre-img {
+                order: -1;
+                height: 300px;
+            }
+            
+            .form-container {
+                padding: 30px;
+            }
+
+            .instagram-post {
+                min-width: 100%;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .btn {
+                padding: 12px 24px;
+            }
+            
+            .destaques h2,
+            .sobre-content h2,
+            .contato h2,
+            .instagram-feed h2 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header id="header">
+        <div class="container">
+            <nav>
+                <div class="logo">
+                    <i class="fas fa-leaf"></i>ARTE<span>KOKE</span>
+                </div>
+                <ul class="nav-links">
+                    <li><a href="#inicio">Início</a></li>
+                    <li><a href="#plantas">Plantas</a></li>
+                    <li><a href="#sobre">Sobre</a></li>
+                    <li><a href="#contato">Contato</a></li>
+                </ul>
+                <div class="hamburger">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero" id="inicio">
+        <div class="container">
+            <h1>Plantas que Transformam Seu Espaço Comercial</h1>
+            <p>Na Artekoke, cultivamos plantas premium perfeitas para ambientes corporativos e residenciais, trazendo vida, frescor e elegância para seu dia a dia.</p>
+            <a href="#plantas" class="btn">Explore Nossa Coleção <i class="fas fa-arrow-right"></i></a>
+        </div>
+    </section>
+    <section class="destaques" id="plantas">
+        <div class="container">
+            <h2>Nossas Plantas em Destaque</h2>
+            <div class="plantas-container">
+                <div class="planta-card">
+                    <div class="planta-img">
+                        <img src="https://i.pinimg.com/736x/89/60/20/89602068fb7917ea5b6f8309ef2bb5d2.jpg" alt="Costela de Adão">
+                        <div class="instagram-overlay">
+                            <i class="fab fa-instagram"></i>
+                            <p>Interessado nesta planta? Nos chame no Instagram para comprar!</p>
+                            <a href="https://instagram.com/artekoke" target="_blank" class="instagram-link">
+                                <i class="fab fa-instagram"></i> @artekoke
+                            </a>
+                        </div>
+                    </div>
+                    <div class="planta-info">
+                        <h3>Costela de Adão</h3>
+                        <p>Perfeita para ambientes internos com luz indireta. Folhas grandes e exuberantes que criam um visual tropical.</p>
+                        <span class="preco">R$ 129,90</span>
+                    </div>
+                </div>
+                <div class="planta-card">
+                    <div class="planta-img">
+                        <img src="https://i.pinimg.com/736x/c7/2f/9b/c72f9b1ab8a11a4b9b40ecccc3d782c8.jpg" alt="Zamioculca">
+                        <div class="instagram-overlay">
+                            <i class="fab fa-instagram"></i>
+                            <p>Interessado nesta planta? Nos chame no Instagram para comprar!</p>
+                            <a href="https://instagram.com/artekoke" target="_blank" class="instagram-link">
+                                <i class="fab fa-instagram"></i> @artekoke
+                            </a>
+                        </div>
+                    </div>
+                    <div class="planta-info">
+                        <h3>Zamioculca</h3>
+                        <p>Planta resistente e de baixa manutenção, ideal para escritórios. Sobrevive em condições de pouca luz.</p>
+                        <span class="preco">R$ 89,90</span>
+                    </div>
+                </div>
+                <div class="planta-card">
+                    <div class="planta-img">
+                        <img src="https://i.pinimg.com/736x/22/59/0f/22590fa890b247907cb03440f5bdbf88.jpg" alt="Mini Monstera">
+                        <div class="instagram-overlay">
+                            <i class="fab fa-instagram"></i>
+                            <p>Interessado nesta planta? Nos chame no Instagram para comprar!</p>
+                            <a href="https://instagram.com/artekoke" target="_blank" class="instagram-link">
+                                <i class="fab fa-instagram"></i> @artekoke
+                            </a>
+                        </div>
+                    </div>
+                    <div class="planta-info">
+                        <h3>Mini Monstera</h3>
+                        <p>Visual tropical em versão compacta. Folhas recortadas e crescimento rápido com pouca manutenção. Ideal para interiores com luz indireta.</p>
+                        <span class="preco">R$ 179,90</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="sobre" id="sobre">
+        <div class="container">
+            <div class="sobre-content">
+                <h2>Sobre a Artekoke</h2>
+                <p>Fundada em 2025, a Artekoke nasceu da paixão por plantas e do desejo de trazer a natureza para os ambientes urbanos. Especializamo-nos em plantas comerciais que se adaptam perfeitamente a escritórios, lojas e residências.</p>
+                <p>Nossas plantas são cultivadas com cuidado extremo e atenção aos detalhes, garantindo qualidade premium e durabilidade. Trabalhamos apenas com espécies selecionadas que combinam beleza estética com facilidade de manutenção.</p>
+                <p>Além da venda, oferecemos serviços de manutenção periódica e consultoria para ambientes corporativos.</p>
+                <a href="#contato" class="btn">Agende uma Consultoria <i class="fas fa-calendar-alt"></i></a>
+            </div>
+            <div class="sobre-img">
+                <img src="https://i.pinimg.com/736x/4a/be/2e/4abe2ef85c06dc9a55512600cce8fad0.jpg" alt="Nosso Viveiro">
+            </div>
+        </div>
+    </section>
+
+    <section class="contato" id="contato">
+        <div class="container">
+            <h2>Entre em Contato</h2>
+            <div class="form-container">
+                <form id="contactForm">
+                    <div class="form-group">
+                        <label for="name">Nome Completo</label>
+                        <input type="text" id="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Telefone</label>
+                        <input type="tel" id="phone">
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Como podemos ajudar?</label>
+                        <textarea id="message" required></textarea>
+                    </div>
+                    <button type="submit" class="btn">Enviar Mensagem <i class="fas fa-paper-plane"></i></button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <section class="instagram-feed">
+        <div class="container">
+            <h2>Siga-nos no Instagram</h2>
+            <div class="instagram-container">
+                <!-- Post 1 -->
+                <div class="instagram-post">
+                    <div class="instagram-embed-container">
+                        <blockquote class="instagram-media" data-instgrm-captioned data-instgrm-permalink="https://www.instagram.com/reel/DGa6dNixY4L/?utm_source=ig_embed&amp;utm_campaign=loading" data-instgrm-version="14" style=" background:#FFF; border:0; border-radius:3px; box-shadow:0 0 1px 0 rgba(0,0,0,0.5),0 1px 10px 0 rgba(0,0,0,0.15); margin: 1px; max-width:540px; min-width:326px; padding:0; width:99.375%; width:-webkit-calc(100% - 2px); width:calc(100% - 2px);"><div style="padding:16px;"> <a href="https://www.instagram.com/reel/DGa6dNixY4L/?utm_source=ig_embed&amp;utm_campaign=loading" style=" background:#FFFFFF; line-height:0; padding:0 0; text-align:center; text-decoration:none; width:100%;" target="_blank"> <div style=" display: flex; flex-direction: row; align-items: center;"> <div style="background-color: #F4F4F4; border-radius: 50%; flex-grow: 0; height: 40px; margin-right: 14px; width: 40px;"></div> <div style="display: flex; flex-direction: column; flex-grow: 1; justify-content: center;"> <div style=" background-color: #F4F4F4; border-radius: 4px; flex-grow: 0; height: 14px; margin-bottom: 6px; width: 100px;"></div> <div style=" background-color: #F4F4F4; border-radius: 4px; flex-grow: 0; height: 14px; width: 60px;"></div></div></div><div style="padding: 19% 0;"></div> <div style="display:block; height:50px; margin:0 auto 12px; width:50px;"><svg width="50px" height="50px" viewBox="0 0 60 60" version="1.1" xmlns="https://www.w3.org/2000/svg" xmlns:xlink="https://www.w3.org/1999/xlink"><g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><g transform="translate(-511.000000, -20.000000)" fill="#000000"><g><path d="M556.869,30.41 C554.814,30.41 553.148,32.076 553.148,34.131 C553.148,36.186 554.814,37.852 556.869,37.852 C558.924,37.852 560.59,36.186 560.59,34.131 C560.59,32.076 558.924,30.41 556.869,30.41 M541,60.657 C535.114,60.657 530.342,55.887 530.342,50 C530.342,44.114 535.114,39.342 541,39.342 C546.887,39.342 551.658,44.114 551.658,50 C551.658,55.887 546.887,60.657 541,60.657 M541,33.886 C532.1,33.886 524.886,41.1 524.886,50 C524.886,58.899 532.1,66.113 541,66.113 C549.9,66.113 557.115,58.899 557.115,50 C557.115,41.1 549.9,33.886 541,33.886 M565.378,62.101 C565.244,65.022 564.756,66.606 564.346,67.663 C563.803,69.06 563.154,70.057 562.106,71.106 C561.058,72.155 560.06,72.803 558.662,73.347 C557.607,73.757 556.021,74.244 553.102,74.378 C549.944,74.521 548.997,74.552 541,74.552 C533.003,74.552 532.056,74.521 528.898,74.378 C525.979,74.244 524.393,73.757 523.338,73.347 C521.94,72.803 520.942,72.155 519.894,71.106 C518.846,70.057 518.197,69.06 517.654,67.663 C517.244,66.606 516.755,65.022 516.623,62.101 C516.479,58.943 516.448,57.996 516.448,50 C516.448,42.003 516.479,41.056 516.623,37.899 C516.755,34.978 517.244,33.391 517.654,32.338 C518.197,30.938 518.846,29.942 519.894,28.894 C520.942,27.846 521.94,27.196 523.338,26.654 C524.393,26.244 525.979,25.756 528.898,25.623 C532.057,25.479 533.004,25.448 541,25.448 C548.997,25.448 549.943,25.479 553.102,25.623 C556.021,25.756 557.607,26.244 558.662,26.654 C560.06,27.196 561.058,27.846 562.106,28.894 C563.154,29.942 563.803,30.938 564.346,32.338 C564.756,33.391 565.244,34.978 565.378,37.899 C565.522,41.056 565.552,42.003 565.552,50 C565.552,57.996 565.522,58.943 565.378,62.101 M570.82,37.631 C570.674,34.438 570.167,32.258 569.425,30.349 C568.659,28.377 567.633,26.702 565.965,25.035 C564.297,23.368 562.623,22.342 560.652,21.575 C558.743,20.834 556.562,20.326 553.369,20.18 C550.169,20.033 549.148,20 541,20 C532.853,20 531.831,20.033 528.631,20.18 C525.438,20.326 523.257,20.834 521.349,21.575 C519.376,22.342 517.703,23.368 516.035,25.035 C514.368,26.702 513.342,28.377 512.574,30.349 C511.834,32.258 511.326,34.438 511.181,37.631 C511.035,40.831 511,41.851 511,50 C511,58.147 511.035,59.17 511.181,62.369 C511.326,65.562 511.834,67.743 512.574,69.651 C513.342,71.625 514.368,73.296 516.035,74.965 C517.703,76.634 519.376,77.658 521.349,78.425 C523.257,79.167 525.438,79.673 528.631,79.82 C531.831,79.965 532.853,80.001 541,80.001 C549.148,80.001 550.169,79.965 553.369,79.82 C556.562,79.673 558.743,79.167 560.652,78.425 C562.623,77.658 564.297,76.634 565.965,74.965 C567.633,73.296 568.659,71.625 569.425,69.651 C570.167,67.743 570.674,65.562 570.82,62.369 C570.966,59.17 571,58.147 571,50 C571,41.851 570.966,40.831 570.82,37.631"></path></g></g></g></svg></div><div style="padding-top: 8px;"> <div style=" color:#3897f0; font-family:Arial,sans-serif; font-size:14px; font-style:normal; font-weight:550; line-height:18px;">Ver essa foto no Instagram</div></div><div style="padding: 12.5% 0;"></div> <div style="display: flex; flex-direction: row; margin-bottom: 14px; align-items: center;"><div> <div style="background-color: #F4F4F4; border-radius: 50%; height: 12.5px; width: 12.5px; transform: translateX(0px) translateY(7px);"></div> <div style="background-color: #F4F4F4; height: 12.5px; transform: rotate(-45deg) translateX(3px) translateY(1px); width: 12.5px; flex-grow: 0; margin-right: 14px; margin-left: 2px;"></div> <div style="background-color: #F4F4F4; border-radius: 50%; height: 12.5px; width: 12.5px; transform: translateX(9px) translateY(-18px);"></div></div><div style="margin-left: 8px;"> <div style=" background-color: #F4F4F4; border-radius: 50%; flex-grow: 0; height: 20px; width: 20px;"></div> <div style=" width: 0; height: 0; border-top: 2px solid transparent; border-left: 6px solid #f4f4f4; border-bottom: 2px solid transparent; transform: translateX(16px) translateY(-4px) rotate(30deg)"></div></div><div style="margin-left: auto;"> <div style=" width: 0px; border-top: 8px solid #F4F4F4; border-right: 8px solid transparent; transform: translateY(16px);"></div> <div style=" background-color: #F4F4F4; flex-grow: 0; height: 12px; width: 16px; transform: translateY(-4px);"></div> <div style=" width: 0; height: 0; border-top: 8px solid #F4F4F4; border-left: 8px solid transparent; transform: translateY(-4px) translateX(8px);"></div></div></div> <div style="display: flex; flex-direction: column; flex-grow: 1; justify-content: center; margin-bottom: 24px;"> <div style=" background-color: #F4F4F4; border-radius: 4px; flex-grow: 0; height: 14px; margin-bottom: 6px; width: 224px;"></div> <div style=" background-color: #F4F4F4; border-radius: 4px; flex-grow: 0; height: 14px; width: 144px;"></div></div></a><p style=" color:#c9c8cd; font-family:Arial,sans-serif; font-size:14px; line-height:17px; margin-bottom:0; margin-top:8px; overflow:hidden; padding:8px 0 7px; text-align:center; text-overflow:ellipsis; white-space:nowrap;"><a href="https://www.instagram.com/reel/DGa6dNixY4L/?utm_source=ig_embed&amp;utm_campaign=loading" style=" color:#c9c8cd; font-family:Arial,sans-serif; font-size:14px; font-style:normal; font-weight:normal; line-height:17px; text-decoration:none;" target="_blank">Uma publicação compartilhada por ArteKoke Kokedamas 🌱 (@artekoke)</a></p></div></blockquote>
+                            <script async src="//www.instagram.com/embed.js"></script>
+                        </blockquote>
+                    </div>
+                </div>
+                
+                <!-- Post 2 (adicione quantos quiser) -->
+                <div class="instagram-post">
+                    <div class="instagram-embed-container">
+                        <blockquote class="instagram-media" data-instgrm-captioned data-instgrm-permalink="https://www.instagram.com/p/DEvCh6FRDml/?utm_source=ig_embed&amp;utm_campaign=loading" data-instgrm-version="14" style=" background:#FFF; border:0; border-radius:3px; box-shadow:0 0 1px 0 rgba(0,0,0,0.5),0 1px 10px 0 rgba(0,0,0,0.15); margin: 1px; max-width:540px; min-width:326px; padding:0; width:99.375%; width:-webkit-calc(100% - 2px); width:calc(100% - 2px);"><div style="padding:16px;"> <a href="https://www.instagram.com/p/DEvCh6FRDml/?utm_source=ig_embed&amp;utm_campaign=loading" style=" background:#FFFFFF; line-height:0; padding:0 0; text-align:center; text-decoration:none; width:100%;" target="_blank"> <div style=" display: flex; flex-direction: row; align-items: center;"> <div style="background-color: #F4F4F4; border-radius: 50%; flex-grow: 0; height: 40px; margin-right: 14px; width: 40px;"></div> <div style="display: flex; flex-direction: column; flex-grow: 1; justify-content: center;"> <div style=" background-color: #F4F4F4; border-radius: 4px; flex-grow: 0; height: 14px; margin-bottom: 6px; width: 100px;"></div> <div style=" background-color: #F4F4F4; border-radius: 4px; flex-grow: 0; height: 14px; width: 60px;"></div></div></div><div style="padding: 19% 0;"></div> <div style="display:block; height:50px; margin:0 auto 12px; width:50px;"><svg width="50px" height="50px" viewBox="0 0 60 60" version="1.1" xmlns="https://www.w3.org/2000/svg" xmlns:xlink="https://www.w3.org/1999/xlink"><g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><g transform="translate(-511.000000, -20.000000)" fill="#000000"><g><path d="M556.869,30.41 C554.814,30.41 553.148,32.076 553.148,34.131 C553.148,36.186 554.814,37.852 556.869,37.852 C558.924,37.852 560.59,36.186 560.59,34.131 C560.59,32.076 558.924,30.41 556.869,30.41 M541,60.657 C535.114,60.657 530.342,55.887 530.342,50 C530.342,44.114 535.114,39.342 541,39.342 C546.887,39.342 551.658,44.114 551.658,50 C551.658,55.887 546.887,60.657 541,60.657 M541,33.886 C532.1,33.886 524.886,41.1 524.886,50 C524.886,58.899 532.1,66.113 541,66.113 C549.9,66.113 557.115,58.899 557.115,50 C557.115,41.1 549.9,33.886 541,33.886 M565.378,62.101 C565.244,65.022 564.756,66.606 564.346,67.663 C563.803,69.06 563.154,70.057 562.106,71.106 C561.058,72.155 560.06,72.803 558.662,73.347 C557.607,73.757 556.021,74.244 553.102,74.378 C549.944,74.521 548.997,74.552 541,74.552 C533.003,74.552 532.056,74.521 528.898,74.378 C525.979,74.244 524.393,73.757 523.338,73.347 C521.94,72.803 520.942,72.155 519.894,71.106 C518.846,70.057 518.197,69.06 517.654,67.663 C517.244,66.606 516.755,65.022 516.623,62.101 C516.479,58.943 516.448,57.996 516.448,50 C516.448,42.003 516.479,41.056 516.623,37.899 C516.755,34.978 517.244,33.391 517.654,32.338 C518.197,30.938 518.846,29.942 519.894,28.894 C520.942,27.846 521.94,27.196 523.338,26.654 C524.393,26.244 525.979,25.756 528.898,25.623 C532.057,25.479 533.004,25.448 541,25.448 C548.997,25.448 549.943,25.479 553.102,25.623 C556.021,25.756 557.607,26.244 558.662,26.654 C560.06,27.196 561.058,27.846 562.106,28.894 C563.154,29.942 563.803,30.938 564.346,32.338 C564.756,33.391 565.244,34.978 565.378,37.899 C565.522,41.056 565.552,42.003 565.552,50 C565.552,57.996 565.522,58.943 565.378,62.101 M570.82,37.631 C570.674,34.438 570.167,32.258 569.425,30.349 C568.659,28.377 567.633,26.702 565.965,25.035 C564.297,23.368 562.623,22.342 560.652,21.575 C558.743,20.834 556.562,20.326 553.369,20.18 C550.169,20.033 549.148,20 541,20 C532.853,20 531.831,20.033 528.631,20.18 C525.438,20.326 523.257,20.834 521.349,21.575 C519.376,22.342 517.703,23.368 516.035,25.035 C514.368,26.702 513.342,28.377 512.574,30.349 C511.834,32.258 511.326,34.438 511.181,37.631 C511.035,40.831 511,41.851 511,50 C511,58.147 511.035,59.17 511.181,62.369 C511.326,65.562 511.834,67.743 512.574,69.651 C513.342,71.625 514.368,73.296 516.035,74.965 C517.703,76.634 519.376,77.658 521.349,78.425 C523.257,79.167 525.438,79.673 528.631,79.82 C531.831,79.965 532.853,80.001 541,80.001 C549.148,80.001 550.169,79.965 553.369,79.82 C556.562,79.673 558.743,79.167 560.652,78.425 C562.623,77.658 564.297,76.634 565.965,74.965 C567.633,73.296 568.659,71.625 569.425,69.651 C570.167,67.743 570.674,65.562 570.82,62.369 C570.966,59.17 571,58.147 571,50 C571,41.851 570.966,40.831 570.82,37.631"></path></g></g></g></svg></div><div style="padding-top: 8px;"> <div style=" color:#3897f0; font-family:Arial,sans-serif; font-size:14px; font-style:normal; font-weight:550; line-height:18px;">Ver essa foto no Instagram</div></div><div style="padding: 12.5% 0;"></div> <div style="display: flex; flex-direction: row; margin-bottom: 14px; align-items: center;"><div> <div style="background-color: #F4F4F4; border-radius: 50%; height: 12.5px; width: 12.5px; transform: translateX(0px) translateY(7px);"></div> <div style="background-color: #F4F4F4; height: 12.5px; transform: rotate(-45deg) translateX(3px) translateY(1px); width: 12.5px; flex-grow: 0; margin-right: 14px; margin-left: 2px;"></div> <div style="background-color: #F4F4F4; border-radius: 50%; height: 12.5px; width: 12.5px; transform: translateX(9px) translateY(-18px);"></div></div><div style="margin-left: 8px;"> <div style=" background-color: #F4F4F4; border-radius: 50%; flex-grow: 0; height: 20px; width: 20px;"></div> <div style=" width: 0; height: 0; border-top: 2px solid transparent; border-left: 6px solid #f4f4f4; border-bottom: 2px solid transparent; transform: translateX(16px) translateY(-4px) rotate(30deg)"></div></div><div style="margin-left: auto;"> <div style=" width: 0px; border-top: 8px solid #F4F4F4; border-right: 8px solid transparent; transform: translateY(16px);"></div> <div style=" background-color: #F4F4F4; flex-grow: 0; height: 12px; width: 16px; transform: translateY(-4px);"></div> <div style=" width: 0; height: 0; border-top: 8px solid #F4F4F4; border-left: 8px solid transparent; transform: translateY(-4px) translateX(8px);"></div></div></div> <div style="display: flex; flex-direction: column; flex-grow: 1; justify-content: center; margin-bottom: 24px;"> <div style=" background-color: #F4F4F4; border-radius: 4px; flex-grow: 0; height: 14px; margin-bottom: 6px; width: 224px;"></div> <div style=" background-color: #F4F4F4; border-radius: 4px; flex-grow: 0; height: 14px; width: 144px;"></div></div></a><p style=" color:#c9c8cd; font-family:Arial,sans-serif; font-size:14px; line-height:17px; margin-bottom:0; margin-top:8px; overflow:hidden; padding:8px 0 7px; text-align:center; text-overflow:ellipsis; white-space:nowrap;"><a href="https://www.instagram.com/p/DEvCh6FRDml/?utm_source=ig_embed&amp;utm_campaign=loading" style=" color:#c9c8cd; font-family:Arial,sans-serif; font-size:14px; font-style:normal; font-weight:normal; line-height:17px; text-decoration:none;" target="_blank">Uma publicação compartilhada por ArteKoke Kokedamas 🌱 (@artekoke)</a></p></div></blockquote>
+                            <script async src="//www.instagram.com/embed.js"></script>
+                        </blockquote>
+                    </div>
+                </div>
+                
+                <!-- Descrição -->
+                <div class="instagram-post-info">
+                    <h3>Nossa Comunidade no Instagram</h3>
+                    <p>No nosso Instagram, compartilhamos dicas de cuidados, novidades e as plantas que estão em destaque.</p>
+                    <p>Acompanhe nosso conteúdo e fique por dentro das últimas tendências!</p>
+                    
+                    <div class="instagram-cta">
+                        <a href="https://www.instagram.com/artekoke/" target="_blank">
+                            Ver mais no Instagram <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Sobre Nós</h3>
+                    <p>Artekoke - Especialistas em plantas comerciais premium para ambientes sofisticados.</p>
+                    <div class="social-icons">
+                        <a href="https://facebook.com/artekoke" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://instagram.com/artekoke" target="_blank"><i class="fab fa-instagram"></i></a>
+                        <a href="https://pinterest.com/artekoke" target="_blank"><i class="fab fa-pinterest-p"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>Contato</h3>
+                    <p><i class="fas fa-envelope"></i> contato@artekoke.com</p>
+                    <p><i class="fas fa-phone"></i> (51) 98765-4321</p>
+                    <p><i class="fas fa-map-marker-alt"></i> Rua das Plantas, 123 - Sapiranga/RS</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Horário</h3>
+                    <p>Seg-Sex: 9h às 18h</p>
+                    <p>Sábado: 10h às 16h</p>
+                    <p>Domingo: Fechado</p>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 Artekoke. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Header scroll effect
+        window.addEventListener('scroll', function() {
+            const header = document.getElementById('header');
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Mobile menu toggle
+        const hamburger = document.querySelector('.hamburger');
+        const navLinks = document.querySelector('.nav-links');
+        
+        hamburger.addEventListener('click', function() {
+            navLinks.classList.toggle('active');
+            hamburger.innerHTML = navLinks.classList.contains('active') ? 
+                '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
+        });
+
+        // Close mobile menu when clicking a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                hamburger.innerHTML = '<i class="fas fa-bars"></i>';
+            });
+        });
+
+        // Form submission with validation
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form values
+            const name = document.getElementById('name').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const phone = document.getElementById('phone').value.trim();
+            const message = document.getElementById('message').value.trim();
+            
+            // Simple validation
+            if (!name || !email || !message) {
+                alert('Por favor, preencha todos os campos obrigatórios.');
+                return;
+            }
+            
+            // Email validation
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                alert('Por favor, insira um email válido.');
+                return;
+            }
+            
+            // Here you would typically send this data to a server
+            console.log('Form submitted:', { name, email, phone, message });
+            
+            // Show success message with sweet animation
+            const formContainer = document.querySelector('.form-container');
+            formContainer.style.opacity = '0';
+            formContainer.style.transform = 'translateY(20px)';
+            
+            setTimeout(() => {
+                formContainer.innerHTML = `
+                    <div style="text-align: center; animation: fadeInUp 0.6s ease-out;">
+                        <i class="fas fa-check-circle" style="font-size: 4rem; color: var(--verde-acinzentado); margin-bottom: 20px;"></i>
+                        <h3 style="color: var(--verde-acinzentado); margin-bottom: 15px;">Obrigado, ${name}!</h3>
+                        <p style="margin-bottom: 25px;">Sua mensagem foi enviada com sucesso. Entraremos em contato em breve.</p>
+                        <button onclick="window.location.reload()" class="btn">Enviar outra mensagem</button>
+                    </div>
+                `;
+                formContainer.style.opacity = '1';
+                formContainer.style.transform = 'translateY(0)';
+            }, 300);
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Animation on scroll
+        function animateOnScroll() {
+            const elements = document.querySelectorAll('.plantas-container, .sobre-content, .form-container');
+            
+            elements.forEach(element => {
+                const elementPosition = element.getBoundingClientRect().top;
+                const screenPosition = window.innerHeight / 1.2;
+                
+                if (elementPosition < screenPosition) {
+                    element.style.opacity = '1';
+                    element.style.transform = 'translateY(0)';
+                }
+            });
+        }
+
+        // Set initial state for animated elements
+        document.querySelectorAll('.plantas-container, .sobre-content, .form-container').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'all 0.6s ease-out';
+        });
+
+        // Run animation check on load and scroll
+        window.addEventListener('load', animateOnScroll);
+        window.addEventListener('scroll', animateOnScroll);
+
+        // Floating animation for decorative elements (optional)
+        const logoIcon = document.querySelector('.logo i');
+        if (logoIcon) {
+            logoIcon.classList.add('floating');
+        }
+
+        // Instagram Embed Fallback System
+        document.addEventListener('DOMContentLoaded', function() {
+            // Carrega o script do Instagram
+            const loadInstagramEmbed = () => {
+                const script = document.createElement('script');
+                script.src = 'https://www.instagram.com/embed.js';
+                script.async = true;
+                script.onerror = () => {
+                    // Fallback se o script não carregar
+                    document.querySelectorAll('.instagram-embed-container').forEach(container => {
+                        container.innerHTML = `
+                            <div class="instagram-fallback-message">
+                                <p>Não foi possível carregar o conteúdo do Instagram.</p>
+                                <a href="${container.querySelector('a').href}" target="_blank" class="btn">
+                                    Ver no Instagram <i class="fab fa-instagram"></i>
+                                </a>
+                            </div>
+                        `;
+                    });
+                };
+                document.body.appendChild(script);
+            };
+
+            // Verifica se o embed carregou após 3 segundos
+            const checkEmbeds = () => {
+                setTimeout(() => {
+                    const embeds = document.querySelectorAll('.instagram-media iframe');
+                    embeds.forEach(embed => {
+                        if (!embed || embed.offsetHeight === 0) {
+                            embed.parentElement.innerHTML = `
+                                <div class="instagram-fallback-message">
+                                    <p>Não foi possível carregar o conteúdo do Instagram.</p>
+                                    <a href="${embed.parentElement.querySelector('a').href}" target="_blank" class="btn">
+                                        Ver no Instagram <i class="fab fa-instagram"></i>
+                                    </a>
+                                </div>
+                            `;
+                        }
+                    });
+                }, 3000);
+            };
+
+            loadInstagramEmbed();
+            checkEmbeds();
+        });
+    </script>
+</body>
+</html>
