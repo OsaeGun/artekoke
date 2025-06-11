@@ -658,6 +658,141 @@
             margin-top: 15px;
         }
 
+        /* Botão do WhatsApp */
+        .whatsapp-button {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background-color: #25D366;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+            z-index: 999;
+            transition: all 0.3s ease;
+            animation: pulse 2s infinite;
+        }
+
+        .whatsapp-button:hover {
+            background-color: #128C7E;
+            transform: scale(1.1);
+            box-shadow: 0 6px 25px rgba(0, 0, 0, 0.3);
+        }
+
+                /* Seção de Depoimentos */
+        .depoimentos {
+            padding: 100px 0;
+            background-color: var(--verde-claro);
+            text-align: center;
+        }
+
+        .depoimentos h2 {
+            font-size: 2.5rem;
+            margin-bottom: 60px;
+            color: var(--verde-acinzentado);
+            position: relative;
+            display: inline-block;
+        }
+
+        .depoimentos h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background-color: var(--verde-acinzentado);
+        }
+
+        .depoimentos-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .depoimento-card {
+            background-color: white;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: var(--sombra);
+            transition: var(--transicao);
+            text-align: left;
+        }
+
+        .depoimento-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.12);
+        }
+
+        .cliente-info {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .cliente-foto {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-right: 15px;
+            border: 3px solid var(--verde-acinzentado);
+        }
+
+        .cliente-nome {
+            font-weight: 600;
+            color: var(--verde-acinzentado);
+            margin-bottom: 5px;
+        }
+
+        .cliente-local {
+            font-size: 0.9rem;
+            color: #777;
+        }
+
+        .avaliacao {
+            color: #FFD700;
+            margin-bottom: 15px;
+        }
+
+        .depoimento-texto {
+            color: #555;
+            font-style: italic;
+            position: relative;
+            padding-left: 20px;
+        }
+
+        .depoimento-texto::before {
+            content: '"';
+            position: absolute;
+            left: 0;
+            top: -10px;
+            font-size: 3rem;
+            color: rgba(109, 139, 116, 0.2);
+            font-family: serif;
+        }
+
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7);
+            }
+            70% {
+                box-shadow: 0 0 0 15px rgba(37, 211, 102, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
+            }
+        }
+
         /* Animações */
         @keyframes fadeInUp {
             from {
@@ -754,6 +889,15 @@
 
             .instagram-post {
                 min-width: 100%;
+            }
+
+            /* WhatsApp button mobile */
+            .whatsapp-button {
+                width: 50px;
+                height: 50px;
+                font-size: 25px;
+                bottom: 20px;
+                right: 20px;
             }
         }
         
@@ -972,6 +1116,11 @@
             </div>
         </div>
     </footer>
+
+    <!-- Botão do WhatsApp -->
+    <a href="https://wa.me/5551997925275?text=Oi%2C+tenho+interesse+nas+kokedamas%21" class="whatsapp-button" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
 
     <script>
         // Header scroll effect
